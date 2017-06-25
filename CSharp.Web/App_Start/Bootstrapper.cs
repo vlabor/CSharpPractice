@@ -11,7 +11,7 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 
-namespace CSharp.Web.App_Start
+namespace CSharp.Web
 {
     public class Bootstrapper
     {
