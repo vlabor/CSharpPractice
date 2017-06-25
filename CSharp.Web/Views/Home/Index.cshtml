@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CSharp.Web.ViewModels.AwardViewModel>
+
+@{
+    ViewBag.Title = "Awards";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+
+</p>
+<div class="container">
+    <div class="jumbotron">
+
+        @foreach (var item in Model)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @*@Html.DisplayFor(modelItem => item.Name)*@
+                    @Html.ActionLink("View all " + item.Title, "Index", new { category = item.Title }, new { @class = "pull-right" })
+                    @using (Html.BeginForm("Filter", "Home", new { category = item.Title }, FormMethod.Post, new { @class = "navbar-form" }))
+                    {
+                        @Html.TextBox("awardTitle", null, new { @class = "form-control", placeholder = "Search in " + item.Title })
+                    }
+                    
+                </div>
+                @foreach (var grant in item.Grants)
+                {
+                    @Html.Partial("Grant", grant)
+                }
+                <div class="panel-footer">
+                    @using (Html.BeginForm("Create", "Home", FormMethod.Post,
+                        new { enctype = "multipart/form-data", @class = "form-inline" }))
+                    {
+                        @Html.Hidden("OriginalAwardId", item.AwardId)
+                       
+                        <div class="form-group">
+                            <label class="sr-only" for="amount">Amount</label>
+                            <input type="number" class="form-control" name="amount" placeholder="Enter Amount">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="granteeAgencyName">Agency Name</label>
+                            <input type="text" class="form-control" name="granteeAgencyName" placeholder="Enter Agency Name">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    }
+                </div>
+            </div>
+        }
+
+    </div>
+
+</div>
