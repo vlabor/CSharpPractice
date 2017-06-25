@@ -13,7 +13,7 @@ namespace CSharp.Service
 
         Grant GetGrant(int id);
 
-        Grant GetGrantByAward(int awardId);
+        IEnumerable<Grant> GetGrantsByAward(int awardId);
 
         void CreateGrant(Grant grant);
 

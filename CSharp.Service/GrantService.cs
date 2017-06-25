@@ -6,17 +6,20 @@ using System.Threading.Tasks;
 using CSharp.Model;
 using CSharp.Repositories.Interface;
 using CSharp.Infrastructure;
+using CSharp.Repositories;
 
 namespace CSharp.Service
 {
     public class GrantService : IGrantService
     {
         private readonly IGrantRepository grantRepository;
+        private readonly IAwardRepository awardRepository;
         private readonly IUnitOfWork unitOfWork;
 
-        public GrantService(IGrantRepository grantRepository, IUnitOfWork unitOfWork)
+        public GrantService(IGrantRepository grantRepository, IAwardRepository awardRepository, IUnitOfWork unitOfWork)
         {
             this.grantRepository = grantRepository;
+            this.awardRepository = awardRepository;
             this.unitOfWork = unitOfWork;
         }
         public void CreateGrant(Grant grant)
@@ -30,10 +33,11 @@ namespace CSharp.Service
             return grant;
         }
 
-        public Grant GetGrantByAward(int awardId)
+        public IEnumerable<Grant> GetGrantsByAward(int awardId)
         {
-            var grant = grantRepository.GetGrantByAwardId(awardId);
-            return grant;
+            var award = awardRepository.GetById(awardId);
+            var grants = award.Grants.ToList();
+            return grants;
         }
 
         public IEnumerable<Grant> GetGrants()

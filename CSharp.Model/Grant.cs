@@ -18,5 +18,10 @@ namespace CSharp.Model
 
         public int AwardId { get; set; }
         public Award Award { get; set; }
+
+        public Grant()
+        {
+            DateCreated = DateTime.Now;
+        }
     }
 }

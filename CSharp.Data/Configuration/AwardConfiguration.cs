@@ -16,7 +16,7 @@ namespace CSharp.Data
             Property(p => p.AwardId).IsRequired();
             Property(p => p.Title).IsRequired().HasMaxLength(50);
             Property(p => p.AwardDate).IsRequired();
-            Property(p => p.LastModifiedDate).IsRequired();
+            Property(p => p.DateUpdated).IsRequired();
         }
     }
 }

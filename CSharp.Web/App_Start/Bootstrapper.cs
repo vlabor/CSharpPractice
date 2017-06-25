@@ -4,6 +4,7 @@ using CSharp.Data;
 using CSharp.Infrastructure;
 using CSharp.Repositories;
 using CSharp.Service;
+using CSharp.Web.Mappings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,8 @@ namespace CSharp.Web
         public static void Run()
         {
             SetAutofacContainer();
+
+            AutoMapperConfiguration.Configure();
         }
 
         private static void SetAutofacContainer()

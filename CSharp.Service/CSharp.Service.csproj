@@ -59,6 +59,10 @@
       <Project>{E636766A-FCB5-4B4A-A802-C9CEB2317CBF}</Project>
       <Name>CSharp.Repositories.Interface</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CSharp.Repositories\CSharp.Repositories.csproj">
+      <Project>{BA270BA2-91A0-49A4-9164-F0DC990F1BC2}</Project>
+      <Name>CSharp.Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
